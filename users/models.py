@@ -24,7 +24,7 @@ class User(AbstractUser):
     email = models.EmailField(max_length=120, unique=True)
     country_code = models.CharField(max_length=4)
     contact_info = models.CharField(max_length=16)
-    document_type = models.CharField(max_length=10, choices=DocumentType.choices, default=DocumentType.OUTRO)
+    document_type = models.CharField(max_length=10, choices=DocumentType.choices, default=DocumentType.CPF)
     role = models.CharField(max_length=7, choices=UserRole.choices, default=UserRole.HOSPEDE)
     document_number = models.CharField(max_length=15, unique=True)
     is_superuser = models.BooleanField(default=False)
