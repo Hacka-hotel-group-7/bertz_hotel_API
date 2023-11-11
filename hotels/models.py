@@ -8,7 +8,7 @@ class StatusChoices(models.IntegerChoices):
     FIVE = 5
 
 
-class Hotels(models.Model):
+class Hotel(models.Model):
     id = models.UUIDField(default=uuid.uuid4, primary_key=True, editable=False)
     status = models.IntegerField(choices=StatusChoices.choices, default=StatusChoices.THREE)
     city = models.CharField(max_length=50)
