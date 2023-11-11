@@ -16,8 +16,11 @@ class UserSerializer(serializers.ModelSerializer):
             "document_type",
             "document_number",
             "role",
-            "is_superuser"
+            "is_superuser",
+            "reviews",
+            "reservations"
         ]
+        extra_kwargs = {"password": {"write_only": True}, "is_superuser": {"required": False, "default": False}, "reservations": {"required": False}}
 
     def create(self, validated_data):
         if validated_data["is_superuser"]:
