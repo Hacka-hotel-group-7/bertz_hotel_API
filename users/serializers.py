@@ -22,8 +22,7 @@ class UserSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         if validated_data["is_superuser"]:
             account = User.objects.create_superuser(**validated_data)
-        else:
-            account = User.objects.create_user(**validated_data)
+        account = User.objects.create_user(**validated_data)
 
         return account
 
