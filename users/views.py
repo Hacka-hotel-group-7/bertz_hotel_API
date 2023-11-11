@@ -1,3 +1,16 @@
-from django.shortcuts import render
+from rest_framework.generics import RetrieveUpdateDestroyAPIView, CreateAPIView
+from .models import User
+from .serializers import UserSerializer
 
-# Create your views here.
+
+class UserView(CreateAPIView):
+
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+
+class UserDetailView(RetrieveUpdateDestroyAPIView):
+
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    lookup_url_kwarg = "user_id"
