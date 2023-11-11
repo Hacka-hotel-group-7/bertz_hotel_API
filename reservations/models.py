@@ -22,3 +22,5 @@ class Reservation(models.Model):
     paid = models.BooleanField(default=False)
     payments_methods = models.CharField(max_length=8, choices=PaymentsMethods.choices, null=True)
     total = models.FloatField()
+    guest = models.ForeignKey('users.User', on_delete=models.CASCADE, related_name='reservations')
+    bedroom = models.ForeignKey('bedrooms.Bedroom', on_delete=models.CASCADE, related_name='reservations')
