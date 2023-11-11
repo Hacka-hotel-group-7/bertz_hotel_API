@@ -13,7 +13,7 @@ class HotelImageView(CreateAPIView):
         serializer.save(hotel_id=self.kwargs[self.lookup_url_kwarg])
 
 
-class HotelImageDetail(DestroyAPIView):
+class HotelImageDetailView(DestroyAPIView):
 
     queryset = HotelImage.objects.all()
     serializer_class = HotelImageSerializer
