@@ -13,13 +13,9 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Bedroom',
+            name='HotelImages',
             fields=[
                 ('id', models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False)),
-                ('status', models.CharField(choices=[('limpo', 'Limpo'), ('ocupado', 'Ocupado'), ('manutenção', 'Manutencao'), ('disponível', 'Disponivel')], default='disponível', max_length=10)),
-                ('room_type', models.CharField(max_length=20)),
-                ('bed_number', models.IntegerField(default=2)),
-                ('price', models.IntegerField()),
                 ('image', models.TextField()),
             ],
         ),
