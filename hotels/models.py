@@ -10,7 +10,6 @@ class StatusChoices(models.IntegerChoices):
 
 class Hotels(models.Model):
     id = models.UUIDField(default=uuid.uuid4, primary_key=True, editable=False)
-    name = models.CharField(max_length=50, unique=True)
     status = models.IntegerField(choices=StatusChoices.choices, default=StatusChoices.THREE)
     city = models.CharField(max_length=50)
     address = models.CharField(max_length=120)
