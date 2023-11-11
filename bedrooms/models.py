@@ -16,3 +16,4 @@ class Bedroom(models.Model):
     bed_number = models.IntegerField(default=2)
     price = models.IntegerField()
     image = models.TextField()
+    hotel = models.ForeignKey('hotels.Hotel', on_delete=models.CASCADE, related_name='bedrooms')
