@@ -1,9 +1,13 @@
 from rest_framework.generics import CreateAPIView, DestroyAPIView
 from .models import HotelImage
 from .serializers import HotelImageSerializer
+from rest_framework_simplejwt.authentication import JWTAuthentication
+from hotels.permissions import HaveStaffPermission
 
 
 class HotelImageView(CreateAPIView):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [HaveStaffPermission]
 
     queryset = HotelImage.objects.all()
     serializer_class = HotelImageSerializer
@@ -14,6 +18,8 @@ class HotelImageView(CreateAPIView):
 
 
 class HotelImageDetailView(DestroyAPIView):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [HaveStaffPermission]
 
     queryset = HotelImage.objects.all()
     serializer_class = HotelImageSerializer
