@@ -27,4 +27,4 @@ class User(AbstractUser):
     document_number = models.CharField(max_length=15, unique=True)
     role = models.CharField(max_length=7, choices=UserRole.choices, default=UserRole.HOSPEDE)
     is_superuser = models.BooleanField(default=False)
-    reviews = models.ManyToManyField('reviews.Review', related_name='guests', null=True)
+    reviews = models.ManyToManyField('reviews.Review', related_name='guests')

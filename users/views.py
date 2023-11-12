@@ -3,6 +3,8 @@ from .models import User
 from .serializers import UserSerializer
 from .serializers import CustomJWTSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
+from rest_framework_simplejwt.authentication import JWTAuthentication
+from .permissions import HaveStaffPermission, StaffOrOwnerPermission
 
 
 class LoginJWTView(TokenObtainPairView):
@@ -10,6 +12,8 @@ class LoginJWTView(TokenObtainPairView):
 
 
 class StaffView(ListCreateAPIView):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [HaveStaffPermission]
 
     queryset = User.objects.all()
     serializer_class = UserSerializer
@@ -22,6 +26,8 @@ class UserView(CreateAPIView):
 
 
 class UserDetailView(RetrieveUpdateDestroyAPIView):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [StaffOrOwnerPermission]
 
     queryset = User.objects.all()
     serializer_class = UserSerializer
