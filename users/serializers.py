@@ -30,6 +30,7 @@ class UserSerializer(serializers.ModelSerializer):
             "reviews",
             "reservations"
         ]
+        depth = 1
         read_only_fields = ['reviews', 'reservations']
         extra_kwargs = {"password": {"write_only": True}, "is_superuser": {"default": False}, "role": {"default": "hospede"}}
 
