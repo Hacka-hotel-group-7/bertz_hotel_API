@@ -1,3 +1,15 @@
-from django.shortcuts import render
+from rest_framework.generics import CreateAPIView, DestroyAPIView
+from .models import Promotion
+from .serializers import PromotionSerializer
 
-# Create your views here.
+
+class PromotionView(CreateAPIView):
+
+    queryset = Promotion.objects.all()
+    serializer_class = PromotionSerializer
+
+
+class PromotionDetailView(DestroyAPIView):
+
+    queryset = Promotion.objects.all()
+    serializer_class = PromotionSerializer
