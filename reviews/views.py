@@ -16,6 +16,7 @@ class ReviewView(ListCreateAPIView):
     def perform_create(self, serializer):
         review = serializer.save()
         review.hotels.add(self.kwargs['hotel_id'])
+        review.guests.add(self.request.user.id)
 
 
 class ReviewDetailView(RetrieveUpdateDestroyAPIView):
