@@ -1,14 +1,17 @@
-from rest_framework.generics import CreateAPIView, UpdateAPIView
+from rest_framework.generics import ListCreateAPIView, UpdateAPIView
 from .models import Bedroom
 from .serializers import BedroomSerializer
 from rest_framework_simplejwt.authentication import JWTAuthentication
 
 
-class BedroomView(CreateAPIView):
+class BedroomView(ListCreateAPIView):
 
     queryset = Bedroom.objects.all()
     serializer_class = BedroomSerializer
     lookup_url_kwarg = "hotel_id"
+
+    def perform_create(self, serializer):
+        serializer.save(hotel_id=self.request.data['hotel'])
 
 
 class BedroomDetailView(UpdateAPIView):
