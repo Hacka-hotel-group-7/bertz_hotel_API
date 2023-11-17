@@ -8,4 +8,3 @@ class BedroomSerializer(serializers.ModelSerializer):
         model = Bedroom
         fields = "__all__"
         read_only_fields = ['hotel']
-        depth = 1
