@@ -20,3 +20,9 @@ class HotelDetailView(RetrieveUpdateDestroyAPIView):
     queryset = Hotel.objects.all()
     serializer_class = HotelSerializer
     lookup_url_kwarg = "hotel_id"
+
+    def perform_update(self, serializer):
+        if self.request.data['services']:
+            hotel = self.get_object()
+            hotel.services.set(self.request.data['services'])
+        serializer.save()
