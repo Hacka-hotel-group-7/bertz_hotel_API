@@ -1,3 +1,20 @@
 from django.db import models
+import uuid
 
-# Create your models here.
+
+class StatusChoices(models.IntegerChoices):
+    THREE = 3
+    FOUR = 4
+    FIVE = 5
+
+
+class Hotel(models.Model):
+    id = models.UUIDField(default=uuid.uuid4, primary_key=True, editable=False)
+    status = models.IntegerField(choices=StatusChoices.choices, default=StatusChoices.THREE)
+    city = models.CharField(max_length=50)
+    address = models.CharField(max_length=120)
+    phone = models.CharField(max_length=12)
+    description = models.TextField()
+    services = models.ManyToManyField('services.Service', related_name='hotels')
+    reviews = models.ManyToManyField('reviews.Review', related_name='hotels')
+    promotions = models.ManyToManyField('promotions.Promotion', related_name='hotels')
