@@ -12,8 +12,8 @@ class LoginJWTView(TokenObtainPairView):
 
 
 class StaffView(ListCreateAPIView):
-    # authentication_classes = [JWTAuthentication]
-    # permission_classes = [HaveStaffPermission]
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [HaveStaffPermission]
 
     queryset = User.objects.all()
     serializer_class = UserSerializer
