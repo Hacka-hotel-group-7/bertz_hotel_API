@@ -37,19 +37,20 @@ ALLOWED_HOSTS = []
 RENDER_EXTERNAL_HOSTNAME = os.getenv("RENDER_EXTERNAL_HOSTNAME")
 
 if RENDER_EXTERNAL_HOSTNAME:
-    ALLOWED_HOSTS +=[RENDER_EXTERNAL_HOSTNAME]
+    ALLOWED_HOSTS += [RENDER_EXTERNAL_HOSTNAME]
 
 
 # Application definition
 
 INSTALLED_APPS = [
-    'drf_spectacular',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'drf_spectacular',
+    'corsheaders',
     'rest_framework',
     'reviews',
     'payments',
@@ -179,7 +180,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'users.User'
 
-
-CORS_ALLOWED_ORIGINS = [
-    'http://localhost:5173',
-]
+CORS_ORIGIN_ALLOW_ALL = True
