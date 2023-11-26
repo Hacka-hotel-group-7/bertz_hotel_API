@@ -2,6 +2,7 @@ from rest_framework.generics import ListCreateAPIView, UpdateAPIView
 from .models import Bedroom
 from .serializers import BedroomSerializer
 from rest_framework_simplejwt.authentication import JWTAuthentication
+from .permissions import HasSuperuserPermission
 
 
 class BedroomView(ListCreateAPIView):
@@ -16,7 +17,7 @@ class BedroomView(ListCreateAPIView):
 
 class BedroomDetailView(UpdateAPIView):
     authentication_classes = [JWTAuthentication]
-    permission_classes = []
+    permission_classes = [HasSuperuserPermission]
 
     queryset = Bedroom.objects.all()
     serializer_class = BedroomSerializer

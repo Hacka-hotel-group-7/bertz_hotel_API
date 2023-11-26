@@ -1,6 +1,6 @@
 from rest_framework.generics import RetrieveUpdateDestroyAPIView, CreateAPIView, ListCreateAPIView
 from .models import User
-from .serializers import UserSerializer
+from .serializers import UserSerializer, GuestSerializer
 from .serializers import CustomJWTSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework_simplejwt.authentication import JWTAuthentication
@@ -22,7 +22,7 @@ class StaffView(ListCreateAPIView):
 class UserView(CreateAPIView):
 
     queryset = User.objects.all()
-    serializer_class = UserSerializer
+    serializer_class = GuestSerializer
 
 
 class UserDetailView(RetrieveUpdateDestroyAPIView):
@@ -30,5 +30,5 @@ class UserDetailView(RetrieveUpdateDestroyAPIView):
     permission_classes = [StaffOrOwnerPermission]
 
     queryset = User.objects.all()
-    serializer_class = UserSerializer
+    serializer_class = GuestSerializer
     lookup_url_kwarg = "user_id"
