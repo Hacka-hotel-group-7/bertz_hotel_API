@@ -31,8 +31,8 @@ class UserSerializer(serializers.ModelSerializer):
             "reservations"
         ]
         depth = 1
-        read_only_fields = ['reviews', 'reservations']
-        extra_kwargs = {"password": {"write_only": True}, "is_superuser": {"default": False}, "role": {"default": "hospede"}}
+        read_only_fields = ['reviews', 'reservations', 'is_superuser']
+        extra_kwargs = {"password": {"write_only": True}, "is_superuser": {"default": False}, "role": {"default": "staff"}}
 
     def create(self, validated_data):
         if validated_data["is_superuser"]:
@@ -49,3 +49,25 @@ class UserSerializer(serializers.ModelSerializer):
         instance.save()
 
         return instance
+
+
+class GuestSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = User
+        fields = [
+            "id",
+            "name",
+            "username",
+            "password",
+            "country_code",
+            "contact_info",
+            "document_type",
+            "document_number",
+            "role",
+            "reviews",
+            "reservations"
+        ]
+        depth = 1
+        read_only_fields = ['role', 'reviews', 'reservations']
+        extra_kwargs = {"password": {"write_only": True}}

@@ -1,8 +1,8 @@
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateAPIView
 from .models import Reservation
 from .serializers import ReservationSerializer, ReservationSerializerUpdate
-# from rest_framework_simplejwt.authentication import JWTAuthentication
-# from users.permissions import StaffOrOwnerPermission
+from rest_framework_simplejwt.authentication import JWTAuthentication
+from .permissions import StaffOrOwnerReservationPermission
 from rest_framework.response import Response
 from datetime import datetime
 
@@ -17,8 +17,8 @@ class ReservationView(ListCreateAPIView):
 
 
 class ReservationDetailView(RetrieveUpdateAPIView):
-    # authentication_classes = [JWTAuthentication]
-    # permission_classes = [StaffOrOwnerPermission]
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [StaffOrOwnerReservationPermission]
 
     queryset = Reservation.objects.all()
     serializer_class = ReservationSerializer
